@@ -12,6 +12,7 @@ import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element.js';
 import { SharedStyles } from './shared-styles.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
+import '@vaadin/vaadin-checkbox/vaadin-checkbox.js';
 import './counter-element.js';
 
 // This element is connected to the redux store.
@@ -29,8 +30,24 @@ store.addReducers({
 class MyView2 extends connect(store)(PageViewElement) {
   _render(props) {
     return html`
+      <dom-module id="my-checkbox" theme-for="vaadin-checkbox">
+        <template>
+          <style>
+            :host {
+              display: block;
+            }
+            [part="checkbox"] {
+              border-radius: 50%;
+            }
+            :host([checked]) [part="checkbox"] {
+              background-color: var(--app-primary-color);
+            }
+        </style>
+      </template>
+    </dom-module>
       ${SharedStyles}
       <section>
+        <vaadin-checkbox>I'm a custom checkbox</vaadin-checkbox>
         <h2>Redux example: simple counter</h2>
         <div class="circle">${props._clicks}</div>
         <p>This page contains a reusable <code>&lt;counter-element&gt;</code>. The

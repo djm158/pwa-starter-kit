@@ -11,15 +11,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 import { html } from '@polymer/lit-element';
 import { SharedStyles } from './shared-styles.js';
 import { PageViewElement } from './page-view-element.js';
+import { theme } from './vaadin-checkbox-theme.js';
+import '@vaadin/vaadin-checkbox/vaadin-checkbox.js';
 
 class MyView1 extends PageViewElement {
   _render(props) {
     return html`
       ${SharedStyles}
+      ${theme}
       <section>
         <h2>Static page</h2>
         <p>This is a text-only page.</p>
         <p>It doesn't do anything other than display some static text.</p>
+        <vaadin-checkbox>Hi i'm a regular checkbox</vaadin-checkbox>
       </section>
       <section>
         <h2>Welcome</h2>
